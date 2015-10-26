@@ -4,8 +4,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	public float boundry = -5f;
-	public Text countText;
-	public Text winText;
 	public GameObject GM;
 
 	private GameManager GMScript;
@@ -15,8 +13,8 @@ public class PlayerController : MonoBehaviour {
     {
 		GMScript = GM.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
-		setCountText();
-		winText.text = "";
+		GMScript.setScore();
+		GMScript.setLives ();
     }
     //called just before physics update
     void FixedUpdate()
@@ -34,23 +32,15 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Pick Up")) {
 			other.gameObject.SetActive (false);
-			GMScript.score++;
-			setCountText ();
+			GMScript.setScore();
 		}
-	}
-	void setCountText()
-	{
-		countText.text = "Count: " + GMScript.score.ToString () + "/" + 12.ToString();
-		if (GMScript.score >= 12) {
-			winText.text = "You Win!";
+		if (other.gameObject.CompareTag ("Enemy")) {
+			reset ();
 		}
 	}
 	void reset(){
 		rb.transform.position = new Vector3 (0f, 0.5f, 0f);
 		rb.velocity = Vector3.zero;
-		GMScript.lives--;
-		if(GMScript.lives < 0){
-			winText.text = "GAME OVER";
-		}
+		GMScript.setLives();
 	}
 }

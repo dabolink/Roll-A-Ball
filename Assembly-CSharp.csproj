@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ActivatorBehaviour.cs" />
      <Compile Include="Assets\Scripts\ButtonController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CubeEnemyAi.cs" />
      <Compile Include="Assets\Scripts\ElevatorController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
